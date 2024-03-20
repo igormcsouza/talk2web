@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "talk2web"
+version = "0.1.0"
+description = "Streamlit application to talk to links in a web (websites and online pdfs)"
+authors = ["Igor Souza <igormcsouza@gmail.com>"]
+readme = "README.md"
+package-mode = true
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.12"
+streamlit = "^1.32.2"
+langchain = "^0.1.12"
+langchain-openai = "^0.0.8"
+taskipy = "^1.12.2"
+beautifulsoup4 = "^4.12.3"
+unstructured = {version = "^0.12.6", extras = ["pdf"]}
+python-dotenv = "^1.0.1"
+faiss-cpu = "^1.8.0"
+
+[tool.taskipy.tasks]
+start = "streamlit run streamlit_app.py"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
