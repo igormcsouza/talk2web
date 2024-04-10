@@ -12,11 +12,14 @@ from langchain_openai import ChatOpenAI
 
 
 class Conversation:
-    def __init__(self):
-        self.llm = ChatOpenAI()
+    def __init__(self, model: str = "gpt-3.5-turbo", temperature: float = 0.7):
+        self.llm = ChatOpenAI(model=model, temperature=temperature)
         self.history: list[BaseMessage] = [
             AIMessage(content="Hello! I'm a website bot. How can I ne helpful today?")
         ]
+
+    def update_temperature(self, temperature: float):
+        self.llm = ChatOpenAI(temperature=temperature)
 
     def add_context(self, context_base: FAISS):
         self.retriever = context_base.as_retriever()
