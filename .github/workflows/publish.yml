@@ -33,4 +33,6 @@ jobs:
           file: Dockerfile
           platforms: linux/amd64
           push: true
-          tags: igormcsouza/talk2web:${{ steps.version.outputs.version }}
+          tags: |
+            igormcsouza/talk2web:${{ steps.version.outputs.version }}
+            igormcsouza/talk2web:latest

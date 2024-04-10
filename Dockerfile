@@ -1,4 +1,5 @@
-FROM python:3.11.8-slim
+# Build stage
+FROM python:3.11.8-slim AS builder
 
 COPY dependencies.sh /opt/dependencies.sh
 RUN chmod +x /opt/dependencies.sh
@@ -8,9 +9,18 @@ RUN pip install poetry
 
 WORKDIR /home/app
 
-COPY . /home/app
+COPY . /home/app/
+RUN poetry config virtualenvs.create false && poetry install --only main \
+    && poetry cache clear pypi --all
 
-RUN poetry config virtualenvs.create false && poetry install --only main
+# Runtime stage
+FROM python:3.11.8-slim
+
+WORKDIR /home/app
+
+COPY --from=builder /usr/local /usr/local
+
+COPY . /home/app
 
 EXPOSE 8501
 

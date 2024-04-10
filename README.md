@@ -29,7 +29,11 @@ With all set, run the application with the following command
 
 Alternatively, you can run direct from docker.io, since the image was built there, this way you can test even without pulling the repository
 
-    docker run --env-file .env igormcsouza/talk2web:0.1.0
+    docker run --env-file .env igormcsouza/talk2web:latest
+
+Or just send the environment variable you already have
+
+    docker run --en OPENAI_API_KEY=${OPENAI_API_KEY} igormcsouza/talk2web:latest
 
 Streamlit app will pop up on the browser.
 
