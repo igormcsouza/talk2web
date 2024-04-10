@@ -33,7 +33,7 @@ Alternatively, you can run direct from docker.io, since the image was built ther
 
 Or just send the environment variable you already have
 
-    docker run --en OPENAI_API_KEY=${OPENAI_API_KEY} igormcsouza/talk2web:latest
+    docker run --env OPENAI_API_KEY=${OPENAI_API_KEY} igormcsouza/talk2web:latest
 
 Streamlit app will pop up on the browser.
 
