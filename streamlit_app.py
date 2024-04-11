@@ -25,7 +25,7 @@ with st.sidebar:
 
     st.header("Temperature Settings")
     temperature = st.slider(
-        "Set the temperature", min_value=0.0, max_value=1.0, value=0.7, step=0.05
+        "Set the temperature", min_value=0.0, max_value=1.0, value=0.7, step=0.05, disabled=not target_url
     )
     st.session_state.dialog.update_temperature(temperature)
 
@@ -48,6 +48,7 @@ if target_url:
 
     with st.sidebar:
         st.write(f"Vector store loaded successfully at key ({key})")
+        st.write(f"Ongoing Conversation with temperature: {temperature}")
 
     question = st.chat_input("Write your question here...")
     if question:

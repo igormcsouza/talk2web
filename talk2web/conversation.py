@@ -15,7 +15,9 @@ class Conversation:
     def __init__(self, model: str = "gpt-3.5-turbo", temperature: float = 0.7):
         self.llm = ChatOpenAI(model=model, temperature=temperature)
         self.history: list[BaseMessage] = [
-            AIMessage(content="Hello! I'm a website bot. How can I ne helpful today?")
+            AIMessage(
+                content="Hello! I'm Stuart. I've learned from the context you entered and can answer any question about that. How can I be helpful today?"
+            )
         ]
 
     def update_temperature(self, temperature: float):
@@ -54,6 +56,7 @@ class Conversation:
             "Given the context:\n"
             "<context>{context}</context>\n"
             "Answer the user question: <question>{input}</question>"
+            "Be kind and respectful as you answer the user's question.\n"
         )
 
         return create_stuff_documents_chain(self.llm, prompt)
