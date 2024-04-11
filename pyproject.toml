@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "talk2web"
-version = "0.1.1"
+version = "0.1.2"
 description = "Streamlit application to talk to links in a web (websites and online pdfs)"
 authors = ["Igor Souza <igormcsouza@gmail.com>"]
 readme = "README.md"
@@ -16,6 +16,7 @@ beautifulsoup4 = "^4.12.3"
 python-dotenv = "^1.0.1"
 faiss-cpu = "^1.8.0"
 pypdf = "^4.2.0"
+youtube-transcript-api = "^0.6.2"
 
 [tool.taskipy.tasks]
 start = "streamlit run streamlit_app.py"
