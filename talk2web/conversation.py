@@ -1,7 +1,9 @@
 from typing import Literal
 
 from langchain.chains.combine_documents import create_stuff_documents_chain
-from langchain.chains.history_aware_retriever import create_history_aware_retriever
+from langchain.chains.history_aware_retriever import (
+    create_history_aware_retriever,
+)
 from langchain.chains.retrieval import create_retrieval_chain
 from langchain_community.vectorstores.faiss import FAISS
 from langchain_core.messages import AIMessage, BaseMessage, HumanMessage
@@ -22,6 +24,9 @@ class Conversation:
 
     def update_temperature(self, temperature: float):
         self.llm = ChatOpenAI(temperature=temperature)
+
+    def update_model(self, model: str):
+        self.llm = ChatOpenAI(model=model)
 
     def add_context(self, context_base: FAISS):
         self.retriever = context_base.as_retriever()
@@ -63,7 +68,8 @@ class Conversation:
 
     def ask(self, question: str) -> str:
         rag_chain = create_retrieval_chain(
-            self._generate_retriever_chain(), self._generate_stuff_document_chain()
+            self._generate_retriever_chain(),
+            self._generate_stuff_document_chain(),
         )
         response = rag_chain.invoke(
             {
@@ -72,4 +78,6 @@ class Conversation:
             }
         )
 
-        return response.get("answer", "Sorry, couldn't not answer your question.")
+        return response.get(
+            "answer", "Sorry, couldn't not answer your question."
+        )
